@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function AddFriend() {
 
     function handleFriendAdd(e) {
@@ -8,15 +10,12 @@ export default function AddFriend() {
         <>
         <div>
             <form className="form-add-friend">
-                <h4> Friend name
+                <p>Friend name </p>
                 <input type="text"/>
-                </h4> 
-                <h4> Image URL
+                <p> Image URL </p>
                 <input type="URL"/>
-                </h4>
-                <button className="button">Add</button>
-            </form>
-            <button className="button" onSubmit={handleFriendAdd}> Close</button>
+                <Button className="button" onSubmit={handleFriendAdd}> Add</Button>
+            </form> 
         </div>
         </>
     )

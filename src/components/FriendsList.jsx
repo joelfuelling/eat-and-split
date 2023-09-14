@@ -1,5 +1,5 @@
 import Friend from "./Friends";
-
+import Button from "./Button";
 // A negative value means that person owes the person with a positive value money.
 const initialFriends = [
     {
@@ -32,7 +32,7 @@ export default function FriendsList() {
                     <Friend friend={friend}/>
                 </ul>
             )}
-            <button className="button">Add friend</button>
+            
         </>
     )
 }
