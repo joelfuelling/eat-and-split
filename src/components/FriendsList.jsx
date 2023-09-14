@@ -1,5 +1,4 @@
 import Friend from "./Friends";
-import Button from "./Button";
 // A negative value means that person owes the person with a positive value money.
 const initialFriends = [
     {

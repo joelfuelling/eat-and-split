@@ -1,6 +1,7 @@
 import Button from "./Button";
 
 export default function AddFriend() {
+    
 
     function handleFriendAdd(e) {
         const friend = e.target[0].value;
@@ -8,7 +9,7 @@ export default function AddFriend() {
     }
     return (
         <>
-        <div>
+        <div>   
             <form className="form-add-friend">
                 <p>Friend name </p>
                 <input type="text"/>

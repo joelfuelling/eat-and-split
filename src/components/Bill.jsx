@@ -1,4 +1,4 @@
-import SelectButton from "./Button"
+import Button from "./Button"
 
 export default function Bill() {
 
@@ -25,7 +25,7 @@ export default function Bill() {
                     <option value='user'>you</option>
                     <option value="friend">X</option>
                 </select>
-            <SelectButton onSubmit={splitBill}>Split bill</SelectButton>
+            <Button onSubmit={splitBill}>Split bill</Button>
         </form>
         
         </>
