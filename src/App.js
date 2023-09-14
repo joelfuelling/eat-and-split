@@ -1,19 +1,18 @@
 
-import './App.css';
+
+import FriendsList from './components/FriendsList';
+import Bill from './components/Bill';
+import AddFriend from './components/AddFriend';
 
 
-
-const friends = [
-  {name: 'Joel'},
-  {name: 'Kyle'},
-  {name: 'Jill'}
-]
 export default function App() {
-
-  
   return (
-    <div className="App">
-      <h1>Test</h1>
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList/>
+      </div>
+      <Bill/>
+      <AddFriend />
     </div>
   );
 }
