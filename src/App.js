@@ -30,6 +30,7 @@ export default function App() {
   // [friends, setFriends] is lifting state.
   const [friends, setFriends] = useState(initialFriends)
   const [showAddFriend, setShowAddFriend] = useState(false)
+  const [selectedFriend, setSelectedFriend] = useState(null)
   
   
   //! Direct State Manipulation - Be Weary!
@@ -57,21 +58,37 @@ export default function App() {
 
   function handleAddFriend(friend) {
     setFriends(friends => [...friends, friend])
+    handleShowAddFriend()
+  }
+  
+  function handleSelection(friend) {
+    // Sometimes cur is 'null', so we have to add the optional chainging to cur otherwise we get "cannot read .id" errors.
+    setSelectedFriend((cur) =>
+    cur?.id === friend.id ? null : friend
+    )
   }
 
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList friends={friends}/> 
-        {
-          showAddFriend && <AddFriendForm onAddFriend={handleAddFriend}/>
-        }
-        <Button onClick={handleShowAddFriend}>
-          {showAddFriend ? 'Close' : 'Add Friend'}
+        <FriendsList 
+          friends={friends}
+          selectedFriend={selectedFriend}
+          onSelection={handleSelection}
+          /> 
+          {
+            showAddFriend && 
+            <AddFriendForm onAddFriend={handleAddFriend}/>
+          }
+        <Button 
+        onClick={handleShowAddFriend}>
+          {showAddFriend ? 
+          'Close' : 'Add Friend'}
         </Button>
       </div>
-      <Bill/>
-      
+      {selectedFriend && 
+      <Bill 
+      selectedFriend={selectedFriend}/>}
     </div>
   );
 }

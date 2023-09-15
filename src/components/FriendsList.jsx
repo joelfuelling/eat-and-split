@@ -1,17 +1,21 @@
 import Friend from "./Friends";
-// A negative value means that person owes the person with a positive value money.
 
-export default function FriendsList({friends}) {
+export default function FriendsList({friends, onSelection, selectedFriend}) {
 
-    
+    // selectedFriend is being passed through FriendsList to Friends, or, we are 'Prop Drilling' 
 
     return(
         <>
-            {friends.map((friend) =>
-                <ul key={friend.id}>
-                    <Friend friend={friend}/>
-                </ul>
+        <ul>
+            {friends.map((friend) =>  
+                    <Friend 
+                    friend={friend} 
+                    key={friend.id}
+                    selectedFriend={selectedFriend}
+                    onSelection={onSelection} 
+                    />
             )}
+        </ul>
             
         </>
     )
