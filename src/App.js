@@ -10,13 +10,13 @@ const initialFriends = [
     id: 118836,
     name: "Clark",
     image: "https://i.pravatar.cc/48?u=118836",
-    balance: -7,
+    balance: 0,
   },
   {
     id: 933372,
     name: "Sarah",
     image: "https://i.pravatar.cc/48?u=933372",
-    balance: 20,
+    balance: 0,
   },
   {
     id: 499476,
@@ -64,8 +64,11 @@ export default function App() {
   function handleSelection(friend) {
     // Sometimes cur is 'null', so we have to add the optional chainging to cur otherwise we get "cannot read .id" errors.
     setSelectedFriend((cur) =>
-    cur?.id === friend.id ? null : friend
+    cur?.id === friend.id 
+    ? null 
+    : friend
     )
+    setShowAddFriend(false)
   }
 
   return (
@@ -88,7 +91,8 @@ export default function App() {
       </div>
       {selectedFriend && 
       <Bill 
-      selectedFriend={selectedFriend}/>}
+      selectedFriend={selectedFriend}
+      friends={friends}/>}
     </div>
   );
 }

@@ -21,7 +21,8 @@ export default function Friend({friend, selectedFriend, onSelection}) {
             <p >
                 You and {`${friend.name}`} are even
             </p>}
-            <Button onClick={() => onSelection(friend)}>
+            <Button onClick={() => 
+                onSelection(friend)}>
                 {isSelected ? "Close" : "Select"}
             </Button>
         </li>
