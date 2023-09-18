@@ -71,6 +71,20 @@ export default function App() {
     setShowAddFriend(false)
   }
 
+  function handleSplitBill(value) {
+    console.log(value)
+    setFriends(friends => 
+      friends.map(
+        friend =>
+          friend.id === selectedFriend.id 
+            // Add the current value plus what was received from the bill component.
+            ? {...friend,balance: friend.balance + value}  
+            : friend
+      ))
+      setSelectedFriend(null)
+
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
@@ -78,21 +92,23 @@ export default function App() {
           friends={friends}
           selectedFriend={selectedFriend}
           onSelection={handleSelection}
-          /> 
-          {
-            showAddFriend && 
-            <AddFriendForm onAddFriend={handleAddFriend}/>
-          }
+        /> 
+        {
+          showAddFriend && 
+          <AddFriendForm onAddFriend={handleAddFriend}/>
+        }
         <Button 
-        onClick={handleShowAddFriend}>
+          onClick={handleShowAddFriend}>
           {showAddFriend ? 
           'Close' : 'Add Friend'}
         </Button>
       </div>
-      {selectedFriend && 
-      <Bill 
-      selectedFriend={selectedFriend}
-      friends={friends}/>}
+        {selectedFriend && 
+        <Bill 
+          selectedFriend={selectedFriend}
+          friends={friends}
+          onSplitBill={handleSplitBill}
+        />}
     </div>
   );
 }

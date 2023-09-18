@@ -1,22 +1,28 @@
 import Button from "./Button"
 import { useState } from "react";
 
-export default function Bill({selectedFriend, friends}) {
+export default function Bill({selectedFriend, onSplitBill}) {
     const [bill, setBill] = useState('')
     const [userExpense, setUserExpense] = useState('')
     const [whoIsPaying, setWhoIsPaying] = useState('')
 
-    function splitBill() {
+    const paidByFriend = bill ? bill - userExpense : ''
 
-    }
 
-    if (!selectedFriend) {
-        return 'No selected Friend'; // or return some kind of placeholder or error message
+    function handleSubmit(e) {
+        e.preventDefault()
+        // If the bill or userExepense inpust are empty, return.
+        // If current user is 'user', use 'paidByFriend' for bill function, othwerwise subract the user expense.
+        if (!bill || !userExpense) return 
+        onSplitBill(whoIsPaying === 'user' 
+        ? paidByFriend
+        : -userExpense
+        )
     }
     return (
         <>
         
-        <form className="form-split-bill">
+        <form className="form-split-bill" onSubmit={handleSubmit}>
             <h2>Split a bill with {`${selectedFriend?.name}`}</h2>
 
             <p>Bill value</p>
@@ -47,7 +53,7 @@ export default function Bill({selectedFriend, friends}) {
                     <option value='user'>you</option>
                     <option value={`${selectedFriend.name}`}>{selectedFriend.name}</option>
                 </select>
-            <Button onSubmit={splitBill}>Split bill</Button>
+            <Button>Split bill</Button>
         </form>
         
         </>
